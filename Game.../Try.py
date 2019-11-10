@@ -97,29 +97,31 @@ while sm:
 		if bullet.y >= bot.y and bullet.y <= bot.y + bot.hitbox[3]:
 			if bullet.x > bot.hitbox[0]:
 				bot.hit()
-				bullets_sq.pop(bullets_sq.index(bullet))
+				bullets_sq.pop()
 
 
 
 		if bullet.x < ScreenWidth and bullet.x > 0 :
 			bullet.x += bullet.vel
 		else:
-			bullets_sq.pop(bullets_sq.index(bullet))
-
+			if len(bullets_sq) != 0:
+				bullets_sq.pop()
+			else:
+				continue
 
 #Bullets of bot
 	for bullet_bot in bullets_bot:
 		if bullet_bot.y >= sq.y and bullet_bot.y <= sq.y + sq.hitbox[3]:
 			if bullet_bot.x < sq.hitbox[0] + sq.hitbox[2]:
 				sq.hit()
-				bullets_bot.pop(bullets_bot.index(bullet_bot))
+				bullets_bot.pop()
 
 
 
-		if bullet_bot.x < ScreenWidth and bullet_bot.x > 0 :
+		if bullet_bot.x < ScreenWidth - 100 and bullet_bot.x > 0 :
 			bullet_bot.x -= bullet_bot.vel
 		else:
-			bullets_bot.pop(bullets_bot.index(bullet_bot))
+			bullets_bot.pop()
 
 	keys = pygame.key.get_pressed()
 
